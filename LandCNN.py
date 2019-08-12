@@ -25,7 +25,7 @@ for file in filename:
 	continue
 img=np.array(img)
 for i in range(img.shape[0]):
-	img[i]=cv2.resize(img[i],(64,64))
+	img[i]=cv2.resize(img[i],(32,32))
 	img1.append(img[i])
 del img
 img1=np.array(img1)
@@ -38,17 +38,17 @@ from keras.layers import Convolution2D,Dense,MaxPool2D,Activation,Dropout,Flatte
 from keras.optimizers import Adam
 from sklearn.model_selection import train_test_split
 X_train,X_test,y_train,y_test=train_test_split(img1,new_train['landmark_id'],test_size=0.2)
-X_train=X_train.reshape(-1,64,64,3)/255 #Normalize
-X_test=X_test.reshape(-1,64,64,3)/255
+X_train=X_train.reshape(-1,32,32,3)/255 #Normalize
+X_test=X_test.reshape(-1,32,32,3)/255
 y_train=np_utils.to_categorical(y_train,num_classes=max(new_train['landmark_id'])+1)
 y_test=np_utils.to_categorical(y_test,num_classes=max(new_train['landmark_id'])+1)
 ########################################################################################
 model=Sequential()
-model.add(Convolution2D(filters=64,kernel_size=(3,3),input_shape=(64,64,3),activation='relu',padding='same'))
+model.add(Convolution2D(filters=32,kernel_size=(3,3),input_shape=(32,32,3),activation='relu',padding='same'))
 model.add(Dropout(rate=0.25))
 model.add(MaxPool2D(pool_size=(2,2),padding='same'))
 
-model.add(Convolution2D(filters=128,kernel_size=(3,3),activation='relu',padding='same'))
+model.add(Convolution2D(filters=64,kernel_size=(3,3),activation='relu',padding='same'))
 model.add(Dropout(rate=0.25))
 model.add(MaxPool2D(pool_size=(2,2),padding='same'))
 
