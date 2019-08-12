@@ -12,27 +12,25 @@ import csv
 import multiprocessing
 import matplotlib.pyplot as plt
 ###################!!!!!!!data preprocessing!!!!!!!!##############################
-#original data size is about 1 million. I only use 10000 to practice 
+#original data size is about 1 million. I only use the data which landmark_id is from 0 to 1000, the data size is about 56000. 
 train=pd.read_csv('C:/Users/user/Downloads/pythonCode/Landmark/train.csv')
 train=train[~train['url'].isin(['None'])]
-new_train=train.iloc[0:9999,:]
-new_train.index=range(0,len(new_train))
-
+train.index=range(0,len(train))
 x=0
-for i in range(len(new_train)):
+for i in range(len(train)):
 	try:
-		link=new_train['url'][i]
+		link=train['url'][i]
 		local=os.path.join('D:/LandGraph/%s.jpg' % x)
-		urllib.request.urlretrieve(link,local) #Download image from url
+		urllib.request.urlretrieve(link,local) #Dowmlad image from url
 		x+=1
 	except OSError:
 		pass
-		new_train=new_train.drop(index=i) #Because some image have a problem( 404 not found)
+		train=train.drop(index=i) #some url have a problem(404 not found)
 	continue
 
-with open('C:/Users/user/Downloads/pythonCode/Landmark/new_train.csv','w',newline='') as f:
+with open('C:/Users/user/Downloads/pythonCode/Landmark/new_train_id1_1000.csv','w',newline='') as f:
 	writer=csv.writer(f)
-	writer.writerow(new_train.columns.values.tolist())
-	for i in range(0,len(new_train)):
-		writer.writerow(new_train.iloc[i,:])
+	writer.writerow(train.columns.values.tolist())
+	for i in range(0,len(train)):
+		writer.writerow(train.iloc[i,:])
 ########################################################################################
