@@ -13,11 +13,11 @@ import csv
 import matplotlib.pyplot as plt
 ###############################################################################################
 #https://bulkresizephotos.com/zh-tw <--- This website can resize your image to 32*32
-new_train=pd.read_csv('C:/Users/user/Downloads/pythonCode/Landmark/new_train.csv')
+new_train=pd.read_csv('C:/Users/user/Downloads/pythonCode/Landmark/new_train_id1_1000.csv')
 img=[]
-filename=os.listdir("D:/LandGraphNew")
+filename=os.listdir("D:/LandGraphNew_1_1000")
 for file in filename:
-		img.append(np.array(Image.open("D:/LandGraphNew/"+file)))
+		img.append(np.array(Image.open("D:/LandGraphNew_1_1000/"+file)))
 img=np.array(img)
 ###########################################################################################
 np.random.seed(1337)
