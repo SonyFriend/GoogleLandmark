@@ -13,11 +13,10 @@ import csv
 import matplotlib.pyplot as plt
 ###############################################################################################
 new_train=pd.read_csv('C:/Users/user/Downloads/pythonCode/Landmark/new_train.csv')
-new_train=new_train.iloc[0:5000,:]
 img=[]
 img1=[]
 filename=os.listdir("D:/LandGraph")
-for file in filename[0:5000]:
+for file in filename:
 	try:
 		img.append(np.array(Image.open("D:/LandGraph/"+file)))
 	except OSError:
