@@ -12,10 +12,10 @@ import csv
 import multiprocessing
 import matplotlib.pyplot as plt
 ###################!!!!!!!data preprocessing!!!!!!!!##############################
-#original data size is about 1 million. I only use 5000 because my computer can't bear
+#original data size is about 1 million. I only use 10000 to practice 
 train=pd.read_csv('C:/Users/user/Downloads/pythonCode/Landmark/train.csv')
 train=train[~train['url'].isin(['None'])]
-new_train=train.iloc[0:5000,:]
+new_train=train.iloc[0:9999,:]
 new_train.index=range(0,len(new_train))
 
 x=0
