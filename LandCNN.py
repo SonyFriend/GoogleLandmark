@@ -12,24 +12,13 @@ import cv2
 import csv
 import matplotlib.pyplot as plt
 ###############################################################################################
+#https://bulkresizephotos.com/zh-tw <--- This website can resize your image to 32*32
 new_train=pd.read_csv('C:/Users/user/Downloads/pythonCode/Landmark/new_train.csv')
 img=[]
-img1=[]
-filename=os.listdir("D:/LandGraph")
+filename=os.listdir("D:/LandGraphNew")
 for file in filename:
-	try:
-		img.append(np.array(Image.open("D:/LandGraph/"+file)))
-	except OSError:
-		pass
-		new_train=new_train.drop(index=filename.index(file))
-	continue
+		img.append(np.array(Image.open("D:/LandGraphNew/"+file)))
 img=np.array(img)
-for i in range(img.shape[0]):
-	img[i]=cv2.resize(img[i],(32,32))
-	img1.append(img[i])
-del img
-img1=np.array(img1)
-gc.collect()
 ###########################################################################################
 np.random.seed(1337)
 from keras.utils import np_utils
