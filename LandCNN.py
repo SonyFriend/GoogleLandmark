@@ -13,10 +13,9 @@ import csv
 import matplotlib.pyplot as plt
 ###############################################################################################
 #https://bulkresizephotos.com/zh-tw <- This website can change your image to 32*32 pixels
-#
 new_train=pd.read_csv('C:/Users/user/Downloads/pythonCode/Landmark/new_train_id0_499.csv')
 filename=os.listdir("D:/LandGraphNew_0_499")
-filename.sort(key=lambda x:int(x[:-4]))
+filename.sort(key=lambda x:int(x[:-4]))#Watch out!You have to read data from 0 to 27776 in order
 img=[]
 for file in filename:
 	img.append(np.array(Image.open("D:/LandGraphNew_0_499/"+file)))
@@ -36,7 +35,7 @@ y_test=np.array(y_test).reshape(-1,1)
 X_train=X_train.reshape(-1,32,32,3)/255 #Normalize
 X_test=X_test.reshape(-1,32,32,3)/255
 y_train=np_utils.to_categorical(y_train,num_classes=500)
-y_test=np_utils.to_categorical(y_test,num_classes=500)
+y_test=np_utils.to_categorical(y_test,num_classes=500)#landmark_id is from 0 to 499
 ########################################################################################
 model=Sequential()
 model.add(Convolution2D(filters=32,kernel_size=(3,3),input_shape=(32,32,3),activation='relu',padding='same'))
