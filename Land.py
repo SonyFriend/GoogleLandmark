@@ -31,7 +31,7 @@ with open('C:/Users/user/Downloads/pythonCode/Landmark/new_train_id0_499.csv','w
 			writer.writerow(train.iloc[i,:])
 			x+=1
 		except OSError:
-			pass
+			pass #Because some url have a problem(404 not found). We have to remove the image which can not open.
 		continue
 
 ########################################################################################
